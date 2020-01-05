@@ -1,6 +1,6 @@
 baseURL = "https://dominiccobo-fyp.github.io/docs/"
 languageCode = "en-GB"
-title = "My New Hugo Site"
+title = "GCS Docs"
 theme = "hugo-theme-learn"
 
 # For search functionality
