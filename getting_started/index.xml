@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Getting Started on GCS Docs</title>
+    <link>https://dominiccobo-fyp.github.io/docs/getting_started/</link>
+    <description>Recent content in Getting Started on GCS Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-GB</language>
+    <lastBuildDate>Sun, 05 Jan 2020 00:09:45 +0000</lastBuildDate>
+    
+	<atom:link href="https://dominiccobo-fyp.github.io/docs/getting_started/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Background</title>
+      <link>https://dominiccobo-fyp.github.io/docs/getting_started/background/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://dominiccobo-fyp.github.io/docs/getting_started/background/</guid>
+      <description>Global Context Server is part of an Undergraduate Computer Science final year project at Brunel University. It aims to solve two issues:
+ Academic software repository mining not being made of use to industrial developers. Information required by developers is scattered across a vast enumeration of services, depleting large amounts of cognitive effort that would be better used to developing solutions to problems.  For more background information, the accompanying background paper can be found at: https://github.</description>
+    </item>
+    
+    <item>
+      <title>Architecture</title>
+      <link>https://dominiccobo-fyp.github.io/docs/getting_started/architecture/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://dominiccobo-fyp.github.io/docs/getting_started/architecture/</guid>
+      <description>There architecture follows a traditional client-server approach. The client-side is composed of an interfacing server which implements the reusable logic and an IDE specific extension.
+The server side is a cluster of different resolvers which act on a message-bus to resolve queries which they understand.</description>
+    </item>
+    
+    <item>
+      <title>Installation</title>
+      <link>https://dominiccobo-fyp.github.io/docs/getting_started/installation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://dominiccobo-fyp.github.io/docs/getting_started/installation/</guid>
+      <description>Server Installation The server consists of a series of containers, defined as kubernetes resources and packaged in helm.
+Before starting, you will need to have an available Kubernetes cluster, with helm setup. Minikube is a great way of getting started with this locally.
+You will also need to obtain a series of configuration properties. At the time being, these are:
+ GitHub API token for mining information from the GitLAB API.</description>
+    </item>
+    
+    <item>
+      <title>Roadmap</title>
+      <link>https://dominiccobo-fyp.github.io/docs/getting_started/roadmap/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://dominiccobo-fyp.github.io/docs/getting_started/roadmap/</guid>
+      <description>Language Support  The current implementation is very Java heavy. A lot of mining data is performed in Python and other scripting languages.  There is a current interest in GraalVM for polyglot development or moving away from a Java centric message bus towards RabbitMQ, or others.
+Improving the Response Model  Current response model is very inflexible. Lacks the ability to provide metadata useful for presentation / aggregation.  IDE Agnostic Plugins  Currently the data-flow is mostly uni-directional.</description>
+    </item>
+    
+  </channel>
+</rss>

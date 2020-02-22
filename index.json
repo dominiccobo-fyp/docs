@@ -1,0 +1,85 @@
+[
+{
+	"uri": "https://dominiccobo-fyp.github.io/docs/getting_started/background/",
+	"title": "Background",
+	"tags": [],
+	"description": "",
+	"content": "Global Context Server is part of an Undergraduate Computer Science final year project at Brunel University. It aims to solve two issues:\n Academic software repository mining not being made of use to industrial developers. Information required by developers is scattered across a vast enumeration of services, depleting large amounts of cognitive effort that would be better used to developing solutions to problems.  For more background information, the accompanying background paper can be found at: https://github.com/dominiccobo-fyp/fyp-dissertation.\n"
+},
+{
+	"uri": "https://dominiccobo-fyp.github.io/docs/developing/overview/",
+	"title": "Overview",
+	"tags": [],
+	"description": "",
+	"content": "High Level graph LR A[\"IDE A\"] AA[\"IDE B\"] AB[\"IDE C\"] B[\"Local Context Daemon\"] C((\"Message Bus\")) D[(\"Documentation Provider\")] E[(\"Experts Provider\")] F[(\"Work Items Provider\")] X[\"Data sources\"] subgraph Client A -- B; AA -- B; AB -- B; end subgraph Server B -- C; C -- 1 * -- D; C -- 1 * -- E; C -- 1 * -- F; end D -- X; E -- X; F -- X;  Low Level sequenceDiagram IDE-+Daemon: Here's a context, answer this? Daemon-+Message Bus: Send this request to\\nto subscribed parties Message Bus -+Providers: Here's a query Note right of Providers: Scatter query Daemon-+IDE: Here's a collection identifier loop Poll IDE-+Daemon: Any new results for this identifier! Daemon-+IDE: Paged Results, if any end\tNote right of Providers: Empty result set  returned for lack of  understanding. Providers -+Message Bus: Return results to requester Message Bus -+Daemon: Here's a new result Note left of Message Bus: Add to collection  "
+},
+{
+	"uri": "https://dominiccobo-fyp.github.io/docs/getting_started/",
+	"title": "Getting Started",
+	"tags": [],
+	"description": "",
+	"content": "Chapter 1 Introduction What is the Global Context Service all about and how do I get started?\n"
+},
+{
+	"uri": "https://dominiccobo-fyp.github.io/docs/getting_started/architecture/",
+	"title": "Architecture",
+	"tags": [],
+	"description": "",
+	"content": "There architecture follows a traditional client-server approach. The client-side is composed of an interfacing server which implements the reusable logic and an IDE specific extension.\nThe server side is a cluster of different resolvers which act on a message-bus to resolve queries which they understand.\n"
+},
+{
+	"uri": "https://dominiccobo-fyp.github.io/docs/getting_started/installation/",
+	"title": "Installation",
+	"tags": [],
+	"description": "",
+	"content": "Server Installation The server consists of a series of containers, defined as kubernetes resources and packaged in helm.\nBefore starting, you will need to have an available Kubernetes cluster, with helm setup. Minikube is a great way of getting started with this locally.\nYou will also need to obtain a series of configuration properties. At the time being, these are:\n GitHub API token for mining information from the GitLAB API. (Large read scope, no write) GitHub API token for reading from the package repository. GitLab API token for mining information from the GitLab API. (Large read scope, no write)  Place these into a file called private_values.yml in the format:\ngitlab: oAuthToken: \u0026lt;YOUR VALUE HERE\u0026gt; github: oAuthToken: \u0026lt;YOUR VALUE HERE\u0026gt; ghDockerRegistryCredentials: registry: docker.pkg.github.com username: \u0026lt;YOUR GITHUB USERNAME HERE\u0026gt; password: \u0026lt;YOUR VALUE HERE\u0026gt; Clone https://github.com/dominiccobo-fyp/infrastructure\nand inside run:\nhelm install ./gcs --namespace gcs --values=private_values.yaml --name gcs\nClient Installation Visual Studio Code For the Visual Studio Code client, please download the most recent release under: https://github.com/dominiccobo-fyp/vscode-command-extension/releases/\nPlease see Extension Marketplace for help installing the file.\n"
+},
+{
+	"uri": "https://dominiccobo-fyp.github.io/docs/getting_started/roadmap/",
+	"title": "Roadmap",
+	"tags": [],
+	"description": "",
+	"content": "Language Support  The current implementation is very Java heavy. A lot of mining data is performed in Python and other scripting languages.  There is a current interest in GraalVM for polyglot development or moving away from a Java centric message bus towards RabbitMQ, or others.\nImproving the Response Model  Current response model is very inflexible. Lacks the ability to provide metadata useful for presentation / aggregation.  IDE Agnostic Plugins  Currently the data-flow is mostly uni-directional. Enabling bidirectional communication could fully fledged plugins to be developed multiple IDEs with little effort.  Greater Metrics  Having truly universal platforms could enable greater insight / measurement of their usage. Ultimately, subject to privacy concerns.  "
+},
+{
+	"uri": "https://dominiccobo-fyp.github.io/docs/developing/clientside/",
+	"title": "Client-Side",
+	"tags": [],
+	"description": "",
+	"content": "Areas of Development The Daemon The daemon is developed using Java. Spring is used as the base platform with Axon Framework for messaging.\nGuidelines  Focuses mainly on backend logic and reusable integration points.  IDE Extensions Each IDE has its own approach to plugins. For example, Electron based IDEs such a Atom and VSCode rely on variations of NodeJS for extensibility.\nGuidelines  Focus on the principles of thin clients. If you need to implement large amounts of logic other than formatting, you should look at the Daemon.  "
+},
+{
+	"uri": "https://dominiccobo-fyp.github.io/docs/developing/serverside/",
+	"title": "Server-Side",
+	"tags": [],
+	"description": "",
+	"content": "Messaging The messaging technology used currently is Axon Server.\nDeployment and Packaging Kubernetes Used to orchestrate the server side containers.\nProduct Website\nHelm Used for simplification of the packaging and deployment of the server-side components.\nProduct Website\nCreating a resolver Below is an example of the requirements to implement a resolver\n@SpringBootApplication public class App { public static void main(String[] args){ SpringApplication.run(App.class, args); } } @Component public class ExpertsProvider implements ExpertsQueryListener { @QueryHandler @Override public List\u0026lt;Expert\u0026gt; on(AssociatedExpertsQuery query) { // TODO: compute values that need returning \treturn new ArrayList\u0026lt;\u0026gt;(); } } Using the following dependencies:\nimplementation \u0026#39;org.axonframework:axon-spring-boot-starter:{axon-version}\u0026#39; implementation \u0026#39;com.dominiccobo.fyp:context-lsp-api:{api-version}\u0026#39; implementation \u0026#39;org.springframework.boot:spring-boot-starter-web:{spring-version}\u0026#39; axon.axonserver.servers=${AXON_SERVER_HOSTNAME} See GitHub WorkItems for examples.\n"
+},
+{
+	"uri": "https://dominiccobo-fyp.github.io/docs/developing/",
+	"title": "2. Developing",
+	"tags": [],
+	"description": "",
+	"content": "Developing How do I add to the ecosystem? "
+},
+{
+	"uri": "https://dominiccobo-fyp.github.io/docs/",
+	"title": "",
+	"tags": [],
+	"description": "",
+	"content": "Welcome "
+},
+{
+	"uri": "https://dominiccobo-fyp.github.io/docs/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://dominiccobo-fyp.github.io/docs/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]

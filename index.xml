@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GCS Docs</title>
+    <link>https://dominiccobo-fyp.github.io/docs/</link>
+    <description>Recent content on GCS Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-GB</language>
+    
+	<atom:link href="https://dominiccobo-fyp.github.io/docs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Background</title>
+      <link>https://dominiccobo-fyp.github.io/docs/getting_started/background/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://dominiccobo-fyp.github.io/docs/getting_started/background/</guid>
+      <description>Global Context Server is part of an Undergraduate Computer Science final year project at Brunel University. It aims to solve two issues:
+ Academic software repository mining not being made of use to industrial developers. Information required by developers is scattered across a vast enumeration of services, depleting large amounts of cognitive effort that would be better used to developing solutions to problems.  For more background information, the accompanying background paper can be found at: https://github.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://dominiccobo-fyp.github.io/docs/developing/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://dominiccobo-fyp.github.io/docs/developing/overview/</guid>
+      <description>High Level graph LR A[&#34;IDE A&#34;] AA[&#34;IDE B&#34;] AB[&#34;IDE C&#34;] B[&#34;Local Context Daemon&#34;] C((&#34;Message Bus&#34;)) D[(&#34;Documentation Provider&#34;)] E[(&#34;Experts Provider&#34;)] F[(&#34;Work Items Provider&#34;)] X[&#34;Data sources&#34;] subgraph Client A -- B; AA -- B; AB -- B; end subgraph Server B -- C; C -- 1 * -- D; C -- 1 * -- E; C -- 1 * -- F; end D -- X; E -- X; F -- X;  Low Level sequenceDiagram IDE-+Daemon: Here&#39;s a context, answer this?</description>
+    </item>
+    
+    <item>
+      <title>Architecture</title>
+      <link>https://dominiccobo-fyp.github.io/docs/getting_started/architecture/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://dominiccobo-fyp.github.io/docs/getting_started/architecture/</guid>
+      <description>There architecture follows a traditional client-server approach. The client-side is composed of an interfacing server which implements the reusable logic and an IDE specific extension.
+The server side is a cluster of different resolvers which act on a message-bus to resolve queries which they understand.</description>
+    </item>
+    
+    <item>
+      <title>Installation</title>
+      <link>https://dominiccobo-fyp.github.io/docs/getting_started/installation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://dominiccobo-fyp.github.io/docs/getting_started/installation/</guid>
+      <description>Server Installation The server consists of a series of containers, defined as kubernetes resources and packaged in helm.
+Before starting, you will need to have an available Kubernetes cluster, with helm setup. Minikube is a great way of getting started with this locally.
+You will also need to obtain a series of configuration properties. At the time being, these are:
+ GitHub API token for mining information from the GitLAB API.</description>
+    </item>
+    
+    <item>
+      <title>Roadmap</title>
+      <link>https://dominiccobo-fyp.github.io/docs/getting_started/roadmap/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://dominiccobo-fyp.github.io/docs/getting_started/roadmap/</guid>
+      <description>Language Support  The current implementation is very Java heavy. A lot of mining data is performed in Python and other scripting languages.  There is a current interest in GraalVM for polyglot development or moving away from a Java centric message bus towards RabbitMQ, or others.
+Improving the Response Model  Current response model is very inflexible. Lacks the ability to provide metadata useful for presentation / aggregation.  IDE Agnostic Plugins  Currently the data-flow is mostly uni-directional.</description>
+    </item>
+    
+    <item>
+      <title>Client-Side</title>
+      <link>https://dominiccobo-fyp.github.io/docs/developing/clientside/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://dominiccobo-fyp.github.io/docs/developing/clientside/</guid>
+      <description>Areas of Development The Daemon The daemon is developed using Java. Spring is used as the base platform with Axon Framework for messaging.
+Guidelines  Focuses mainly on backend logic and reusable integration points.  IDE Extensions Each IDE has its own approach to plugins. For example, Electron based IDEs such a Atom and VSCode rely on variations of NodeJS for extensibility.
+Guidelines  Focus on the principles of thin clients.</description>
+    </item>
+    
+    <item>
+      <title>Server-Side</title>
+      <link>https://dominiccobo-fyp.github.io/docs/developing/serverside/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://dominiccobo-fyp.github.io/docs/developing/serverside/</guid>
+      <description>Messaging The messaging technology used currently is Axon Server.
+Deployment and Packaging Kubernetes Used to orchestrate the server side containers.
+Product Website
+Helm Used for simplification of the packaging and deployment of the server-side components.
+Product Website
+Creating a resolver Below is an example of the requirements to implement a resolver
+@SpringBootApplication public class App { public static void main(String[] args){ SpringApplication.run(App.class, args); } } @Component public class ExpertsProvider implements ExpertsQueryListener { @QueryHandler @Override public List&amp;lt;Expert&amp;gt; on(AssociatedExpertsQuery query) { // TODO: compute values that need returning 	return new ArrayList&amp;lt;&amp;gt;(); } } Using the following dependencies:</description>
+    </item>
+    
+  </channel>
+</rss>
