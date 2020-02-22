@@ -9,3 +9,15 @@ home = [ "HTML", "RSS", "JSON"]
 
 [params]
 themeVariant = "blue"
+
+[[menu.shortcuts]]
+name = "<i class='fab fa-github'></i> Github repo"
+identifier = "ds"
+url = "https://github.com/dominiccobo-fyp/"
+weight = 10
+
+[[menu.shortcuts]]
+name = "<i class='fab fa-slideshare'></i> Overview slides"
+identifier = "pres"
+url = "https://dominiccobo-fyp.github.io/presentation/#/"
+weight = 20
